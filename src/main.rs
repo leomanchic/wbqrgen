@@ -29,8 +29,3 @@ fn main() {
     }
       
 }
-
-// let chars_to_trim: &[char] = &['\n'];
-    // let trimmed_str: &str = file_to_readfrom.trim_matches(chars_to_trim);
-    // for i in file_to_readfrom.re
-    // 
