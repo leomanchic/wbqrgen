@@ -7,5 +7,4 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
-derivative = "2.2.0"
 qrcode-generator = "4.1.8"

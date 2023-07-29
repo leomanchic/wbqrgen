@@ -5,12 +5,10 @@ use std::path::Path;
 use std::io::{self, BufRead};
 use clap::Parser;
 
-use derivative::Derivative;
 
 
 
 #[derive(Parser)]
-#[derive(Derivative)]
 struct CLI{
     /// The pattern to look for
     #[arg(short = 'e', long = "extention")]
@@ -20,7 +18,7 @@ struct CLI{
     path: std::path::PathBuf,
     ///Size of an output image in px^2
     #[arg(short = 's', long = "size")]
-    #[derivative(Default(value = "500"))]
+    // #[derivative(Default(value = "500"))]
     size: usize,
 }
 
