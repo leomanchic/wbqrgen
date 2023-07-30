@@ -10,7 +10,7 @@ use clap::Parser;
 
 #[derive(Parser)]
 struct CLI{
-    /// The pattern to look for
+    /// Define your desireable extention
     #[arg(short = 'e', long = "extention")]
     pattern: String,
     /// The path to the file to read from
