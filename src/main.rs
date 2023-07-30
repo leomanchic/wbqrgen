@@ -10,7 +10,7 @@ use clap::Parser;
 
 
 #[derive(Parser,Debug)]
-#[command(author, version, about="CLI Application for qr-code")]
+#[command(author, version, about="CLI Application for qr-code generation")]
 struct CLI{
     /// Determine the desired extension
     #[clap(short = 'e', long = "extention")]
@@ -18,7 +18,7 @@ struct CLI{
     /// The path to the file to read from
     #[clap(short = 'f', long = "file")]
     path: std::path::PathBuf,
-    #[arg(short = 's', long = "size",default_value_t = 500)]
+    #[arg(short = 's', long = "size",default_value_t = 500,forbid_empty_values = true)]
     ///Size of an output image in pixels
     size: usize,
 }
@@ -34,7 +34,6 @@ where P: AsRef<Path>, {
 }
 
 
-/// Not the dracula
 fn main() {
     let args = CLI::parse();
     if let Ok(lines) = read_lines(&args.path) {
