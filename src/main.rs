@@ -18,7 +18,7 @@ struct CLI{
     /// The path to the file to read from
     #[clap(short = 'f', long = "file")]
     path: std::path::PathBuf,
-    #[arg(short = 's', long = "size",default_value_t = 500,forbid_empty_values = true)]
+    #[arg(short = 's', long = "size",default_value_t = 500)]
     ///Size of an output image in pixels
     size: usize,
 }
@@ -42,15 +42,28 @@ fn main() {
             if let Ok(product) = line {
                 //Определить расширение файла
                 let mut string = product[..].to_string();
-                // Переписать под match, пока под if
-                if &args.pattern == "svg"{
-                    &string.push_str(".svg");
-                    qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,args.size,None::<&str>, &string).unwrap();
-                };
-                if &args.pattern == "png"{
-                    &string.push_str(".png");
-                    qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, args.size, string).unwrap();
-                };
+                
+                match &args.pattern[..] {
+                    "png" => {
+                        &string.push_str(".png");
+                        qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, args.size, &string).unwrap()
+                    },
+                    "svg" => {
+                        &string.push_str(".svg");
+                        qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,args.size,None::<&str>, &string).unwrap()
+                    },
+                    other => panic!("Wrong extention!!!"),
+                    
+
+                }
+                // if &args.pattern == "svg"{
+                //     &string.push_str(".svg");
+                //     qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,args.size,None::<&str>, &string).unwrap();
+                // };
+                // if &args.pattern == "png"{
+                //     &string.push_str(".png");
+                //     qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, args.size, string).unwrap();
+                // };
                 
                 
             }      
