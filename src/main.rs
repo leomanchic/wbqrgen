@@ -23,7 +23,7 @@ struct CLI{
     size: usize,
 }
 
-
+//чтение строчек из файла , каждая строка - отдельный qr-code
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where P: AsRef<Path>, {
     let file = match  File::open(filename){
