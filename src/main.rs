@@ -56,15 +56,6 @@ fn main() {
                     
 
                 }
-                // if &args.pattern == "svg"{
-                //     &string.push_str(".svg");
-                //     qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,args.size,None::<&str>, &string).unwrap();
-                // };
-                // if &args.pattern == "png"{
-                //     &string.push_str(".png");
-                //     qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, args.size, string).unwrap();
-                // };
-                
                 
             }      
         }   
