@@ -51,10 +51,7 @@ fn processing(size: &usize, path: &std::path::PathBuf,pattern: &str){
                         qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,*size,None::<&str>, &string).unwrap()
                     },
                     other => panic!("Wrong extention!!!"),
-                    
-
                 }
-                
             }      
         }   
     }
