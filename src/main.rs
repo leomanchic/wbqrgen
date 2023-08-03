@@ -33,24 +33,22 @@ where P: AsRef<Path>, {
     file
 }
 
-
-fn main() {
-    let args = CLI::parse();
-    if let Ok(lines) = read_lines(&args.path) {
+fn processing(size: &usize, path: &std::path::PathBuf,pattern: &str){
+    if let Ok(lines) = read_lines(&path) {
         // Получает итератор, который возвращает Option
         for line in lines {
             if let Ok(product) = line {
                 //Определить расширение файла
                 let mut string = product[..].to_string();
                 
-                match &args.pattern[..] {
+                match &pattern[..] {
                     "png" => {
                         &string.push_str(".png");
-                        qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, args.size, &string).unwrap()
+                        qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, *size, &string).unwrap()
                     },
                     "svg" => {
                         &string.push_str(".svg");
-                        qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,args.size,None::<&str>, &string).unwrap()
+                        qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,*size,None::<&str>, &string).unwrap()
                     },
                     other => panic!("Wrong extention!!!"),
                     
@@ -60,5 +58,11 @@ fn main() {
             }      
         }   
     }
-      
+
+}
+
+
+fn main() {
+    let args = CLI::parse();
+    processing(&args.size, &args.path, &args.pattern);
 }
