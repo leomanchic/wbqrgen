@@ -39,19 +39,35 @@ pub fn processing(size: &usize, path: &std::path::PathBuf,pattern: &str){
                 //Определить расширение файла
                 let mut string = product[..].to_string();
                 
-                match &pattern[..] {
-                    "png" => {
-                        &string.push_str(".png");
-                        qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, *size, &string).unwrap()
-                    },
-                    "svg" => {
-                        &string.push_str(".svg");
-                        qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,*size,None::<&str>, &string).unwrap()
-                    },
-                    other => panic!("Wrong extention!!!"),
-                }
+                choosing(&pattern, &mut string, &size)
+                // match &pattern[..] {
+                //     "png" => {
+                //         &string.push_str(".png");
+                //         qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, *size, &string).unwrap()
+                //     },
+                //     "svg" => {
+                //         &string.push_str(".svg");
+                //         qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,*size,None::<&str>, &string).unwrap()
+                //     },
+                //     other => panic!("Wrong extention!!!"),
+                // }
             }      
         }   
+    }
+
+}
+
+pub fn choosing(extent: &str,string: &mut String,size: &usize){
+    match &extent[..] {
+        "png" => {
+            &string.push_str(".png");
+            qrcode_generator::to_png_to_file(extent, QrCodeEcc::Low, *size, &string).unwrap()
+        },
+        "svg" => {
+            &string.push_str(".svg");
+            qrcode_generator::to_svg_to_file(&extent, QrCodeEcc::Low,*size,None::<&str>, &string).unwrap()
+        },
+        other => panic!("Wrong extention!!!"),
     }
 
 }
