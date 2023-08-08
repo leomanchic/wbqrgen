@@ -40,18 +40,7 @@ pub fn processing(size: &usize, path: &std::path::PathBuf,pattern: &str){
                 let mut string = product[..].to_string();
                 
                 choosing(&pattern, &mut string, &size)
-                // match &pattern[..] {
-                //     "png" => {
-                //         &string.push_str(".png");
-                //         qrcode_generator::to_png_to_file(product, QrCodeEcc::Low, *size, &string).unwrap()
-                //     },
-                //     "svg" => {
-                //         &string.push_str(".svg");
-                //         qrcode_generator::to_svg_to_file(&product, QrCodeEcc::Low,*size,None::<&str>, &string).unwrap()
-                //     },
-                //     other => panic!("Wrong extention!!!"),
-                // }
-            }      
+                  }      
         }   
     }
 
